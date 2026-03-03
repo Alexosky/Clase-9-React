@@ -48,3 +48,15 @@ export async function eliminarContactoPorId(id) {
 
   return true;
 }
+
+export const actualizarContactoPorId = async (id, contactoActualizado) => {
+  const response = await fetch(`http://localhost:3002/contactos/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contactoActualizado),
+  });
+  if (!response.ok) {
+    throw new Error("Error al actualizar contacto");
+  }
+  return response.json();
+};
